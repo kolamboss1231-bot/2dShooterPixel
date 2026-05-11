@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8217f670045457449891633c8f93a01c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - pointPatrol: {fileID: 7653613819331642793, guid: c7509929d131aac4db53e066c344ab8d, type: 3}
+  - player: {fileID: 8943877433889352581, guid: b4c8d70e56f4a124ab2f3324625cb7d7, type: 3}
+  - pistonEnemy: {fileID: 4142530870934994262, guid: 431c23e8f3b54c24cbc60fdebbf09a98, type: 3}
+  - shotAudio: {fileID: 8391339449375493866, guid: 754d4b4e466dccf48bc7dabacbe0720e, type: 3}
+  - anim: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

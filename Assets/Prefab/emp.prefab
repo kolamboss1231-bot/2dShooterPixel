@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6573788290916690227
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1964014455328029541}
+  - component: {fileID: 5365023260658246646}
+  - component: {fileID: -7595254320904676334}
+  m_Layer: 0
+  m_Name: emp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1964014455328029541
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573788290916690227}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9.97902, y: 1.80036, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5365023260658246646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573788290916690227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b911d114eff391a49b461e7a80f1cd25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::IIbot
+  AnimBot: {fileID: 8892147150363918309, guid: f7447028f4d8a504c9a56e72c09e2925, type: 3}
+  speed: 3
+  posControl: 6
+  reverse: 0
+  stopDistanse: 4
+  point: {fileID: 7653613819331642793, guid: c7509929d131aac4db53e066c344ab8d, type: 3}
+  Bot: {fileID: 1547369602690557059, guid: f7447028f4d8a504c9a56e72c09e2925, type: 3}
+  Piston: {fileID: 4142530870934994262, guid: 431c23e8f3b54c24cbc60fdebbf09a98, type: 3}
+  maxHealthBot: 100
+  MainPlayer: {fileID: 3509341827953986353, guid: b4c8d70e56f4a124ab2f3324625cb7d7, type: 3}
+  shotAudio: {fileID: 8391339449375493866, guid: 754d4b4e466dccf48bc7dabacbe0720e, type: 3}
+  SpBot: {fileID: 780485443599425092, guid: f7447028f4d8a504c9a56e72c09e2925, type: 3}
+  BotBox: {fileID: 468947135980965852, guid: f7447028f4d8a504c9a56e72c09e2925, type: 3}
+--- !u!114 &-7595254320904676334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6573788290916690227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8217f670045457449891633c8f93a01c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BOT
+  speed: 2
+  maxhHpBot: 100
+  distPatrol: 5
+  angryDist: 3
+  pointPatrol: {fileID: 7653613819331642793, guid: c7509929d131aac4db53e066c344ab8d, type: 3}
+  pistonEnemy: {fileID: 4142530870934994262, guid: 431c23e8f3b54c24cbc60fdebbf09a98, type: 3}
+  shotAudio: {fileID: 8391339449375493866, guid: 754d4b4e466dccf48bc7dabacbe0720e, type: 3}
+  anim: {fileID: 0}
+  timeReload: 0
