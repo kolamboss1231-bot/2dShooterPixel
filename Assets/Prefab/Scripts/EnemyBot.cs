@@ -2,6 +2,7 @@ using UnityEngine;
 using Unity.Mathematics;
 using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class EnemyBot : Character
 {
@@ -12,6 +13,7 @@ public class EnemyBot : Character
     [SerializeField]protected Animator anim;
     [SerializeField]protected GameObject Gun;
     [SerializeField]protected GameObject bullet;
+    [SerializeField]protected GameObject[] dropItem = new GameObject[2];
     
     
      protected float riteOfFire;
@@ -30,7 +32,9 @@ public class EnemyBot : Character
     protected bool angry=false;
     protected bool goBack=false;
     protected bool reverse=false;
-    
+    protected bool spawn  ;
+
+    private int r;
     protected void Awake()
     {
         timeReload = Gun.GetComponent<Guns>().timeReload;
@@ -65,6 +69,11 @@ public class EnemyBot : Character
             Destroy(Gun);
             botBox.enabled=false;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            if (spawn == false)
+            {
+                DropSpawn();
+                spawn = true;
+            }
             Destroy(gameObject,5f);
         }
 
@@ -181,6 +190,20 @@ public class EnemyBot : Character
     public void TakeDamage(float Damage)
     {
         maxHp -= Damage;
+    }
+
+    private void DropSpawn()
+    {
+        r = Random.Range(0, 10);
+        if (r >= 1 && r <= 4)
+        {
+            Instantiate(dropItem[0], transform.position, transform.rotation);
+        }
+
+        if (r >= 5 && r <= 6)
+        {
+            Instantiate(dropItem[1], transform.position, transform.rotation);
+        }
     }
 }
 

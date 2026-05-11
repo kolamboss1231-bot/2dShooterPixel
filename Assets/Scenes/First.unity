@@ -806,7 +806,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::zapusk
   player: {fileID: 3509341827953986353, guid: b4c8d70e56f4a124ab2f3324625cb7d7, type: 3}
-  Bot: {fileID: 1547369602690557059, guid: f7447028f4d8a504c9a56e72c09e2925, type: 3}
+  Bot1: {fileID: 8645917919000750624, guid: e139a49e545ae0142acb59796fa8f607, type: 3}
+  Bot2: {fileID: 5226808665808283089, guid: 19a73ad84de085942b167ba89fda8510, type: 3}
+  Bot3: {fileID: 878773849517323943, guid: a58364e6ba39c134a8daee2165797cc6, type: 3}
   GunMka: {fileID: 3228363156040825247, guid: 6886feaaa86edc34e9664f2f40ec9c6e, type: 3}
   Gun: {fileID: 6942298397487380586, guid: 75f3401f4297cd54f8fa08ee8dc7e130, type: 3}
   GunS: {fileID: 6942298397487380586, guid: 6faa626fe190cad47bc107723c4468b5, type: 3}

@@ -65,7 +65,7 @@ public class Guns : MonoBehaviour
             faceRight = parent.GetComponent<Character>().faceRight;
         }
 
-        if (gameObject.transform.parent.name == "Bot(Clone)" && parent != gameObject.transform.parent)
+        if (gameObject.transform.parent.CompareTag("Enemy") && parent != gameObject.transform.parent)
         {
             parent = gameObject.transform.parent;
         }
@@ -191,5 +191,5 @@ public class Guns : MonoBehaviour
         {
             maxAmmoGame = maxAmmo;
         }
-}
+    }
 }

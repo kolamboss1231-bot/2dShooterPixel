@@ -5,26 +5,22 @@ using UnityEngine.UI;
 
 public class Player : Character
 {
-    [SerializeField]private GameObject[] Gun = new GameObject[3];
+    public GameObject[] Gun = new GameObject[3];
 
     [SerializeField]private GameObject[] slots;
     [SerializeField]private float h;
-
-    protected Animator anim;
-
-
     [SerializeField]private Image hpImage;
+    [SerializeField] private float hpAidKit;
+    [SerializeField] private GameObject aidText;
+    
 
-    private float x, y;
     [NonSerialized]public float hpPl;
+    
+    private float x, y;
     private int inHandGun;
     private GameObject textAmmoUi;
-    
-    // private bool IsGrounded;
-    // [SerializeField]private LayerMask plat;
-    // [SerializeField]private float distGround;
-    // [SerializeField]private Transform groundCheck;
-
+    private int aidKit = 0;
+    private Animator anim;
     
     private void Awake()
     {   
@@ -104,6 +100,11 @@ public class Player : Character
                 DropItem();
                 Gun[inHandGun] = null;
             }
+
+            if (aidKit > 0 && Input.GetKeyDown(KeyCode.H))
+            {
+                HpPlus(hpAidKit);
+            }
         }
 
         if(hpPl <= 0)
@@ -181,5 +182,22 @@ public class Player : Character
         {
             Gun[inHandGun].transform.position= new Vector2(gameObject.transform.position.x - 1.5f,gameObject.transform.position.y);
         }
+    }
+
+    public void HpPlus(float hp)
+    {
+        aidKit -= 1;
+        hpPl += hp;
+        if (hpPl > maxHp)
+        {
+            hpPl = maxHp;
+        }
+        hpImage.GetComponent<HpImage>().TakeHP(hpPl);
+        aidText.GetComponent<AidKitText>().AidKitGet(-1);
+    }
+
+    public void AidkitGet(int x)
+    {
+        aidKit += x;
     }
 }
