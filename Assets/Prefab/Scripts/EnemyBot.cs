@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Unity.Mathematics;
 using System.Collections;
@@ -8,35 +9,37 @@ public class EnemyBot : Character
 {
     [SerializeField]protected float distPatrol;
     [SerializeField]protected float angryDist;
+    [SerializeField]protected float yAngryDist;
     [SerializeField]protected float distShoting;
     [SerializeField]protected Transform pointPatrol;
     [SerializeField]protected Animator anim;
     [SerializeField]protected GameObject Gun;
     [SerializeField]protected GameObject bullet;
-    [SerializeField]protected GameObject[] dropItem = new GameObject[2];
+    [SerializeField]protected GameObject[] dropItem;
     
+    protected float riteOfFire; 
+    protected float _delayRiteOfFire;
+    protected int AmmoinMagazine;
+    protected int AmmoInMagazineGame;
+    protected float timeReload;
+    protected float delayTimeReload;
+    protected GameObject audioReload;
     
-     protected float riteOfFire;
-     protected float _delayRiteOfFire;
-     protected int AmmoinMagazine;
-     protected int AmmoInMagazineGame;
-     protected float timeReload;
-     protected float delayTimeReload;
-     protected GameObject audioReload;
-
-
+    protected BoxCollider2D box2dPl;
     protected Transform playerPos;
-    protected BoxCollider2D botBox;
-    //protected bool lifePl;
+    protected BoxCollider2D botBox; 
+    protected bool lifePl = true;
     protected bool chil=false;
     protected bool angry=false;
     protected bool goBack=false;
     protected bool reverse=false;
-    protected bool spawn  ;
+    protected bool spawn;
 
     private int r;
+    
     protected void Awake()
     {
+       
         timeReload = Gun.GetComponent<Guns>().timeReload;
         audioReload = Gun.GetComponent<Guns>().audioReload;
         AmmoinMagazine = Gun.GetComponent<Guns>().ammoInMagazine;
@@ -53,7 +56,8 @@ public class EnemyBot : Character
         rb=GetComponent<Rigidbody2D>();
 
         botBox = gameObject.GetComponent<BoxCollider2D>();
-        playerPos=GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        playerPos = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        box2dPl = GameObject.FindGameObjectWithTag("Player").GetComponent<BoxCollider2D>();
     }
 
     protected void Update()
@@ -98,7 +102,7 @@ public class EnemyBot : Character
             }
             
         
-            if (Vector2.Distance(transform.position, playerPos.position) < angryDist &&  lifePl)
+            if (Mathf.Abs(transform.position.x - playerPos.position.x) < angryDist &&  lifePl && Mathf.Abs(transform.position.y - playerPos.position.y) <= yAngryDist)
             {
                 angry = true;
                 chil = false;
@@ -107,7 +111,7 @@ public class EnemyBot : Character
             
 
 
-            if( Vector2.Distance(transform.position, playerPos.position) > angryDist)
+            if (Mathf.Abs(transform.position.x - playerPos.position.x) > angryDist || Mathf.Abs(transform.position.y - playerPos.position.y) >= yAngryDist)
             {
                 angry=false;
                 goBack = true;
@@ -120,12 +124,15 @@ public class EnemyBot : Character
             else if(goBack==true)
                 GoBack();
 
+
         }
     }
 
-    public void DeathPlayer()
+    private void DeathPlayerForBot()
     {
         lifePl = false;
+        angry = false;
+        goBack = true;
     }
 
     protected void Chil()
@@ -195,15 +202,22 @@ public class EnemyBot : Character
     private void DropSpawn()
     {
         r = Random.Range(0, 10);
-        if (r >= 1 && r <= 4)
+        int i = Random.Range(0, dropItem.Length);
+        if (r <= 4)
         {
-            Instantiate(dropItem[0], transform.position, transform.rotation);
+            Debug.Log(i);
+            Instantiate(dropItem[i], transform.position, transform.rotation);
         }
+    }
 
-        if (r >= 5 && r <= 6)
-        {
-            Instantiate(dropItem[1], transform.position, transform.rotation);
-        }
+    private void OnEnable()
+    {
+        Player.DeathPlayer += DeathPlayerForBot;
+    }
+
+    private void OnDisable()
+    {
+        Player.DeathPlayer -= DeathPlayerForBot;
     }
 }
 

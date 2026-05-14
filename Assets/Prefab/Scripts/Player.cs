@@ -5,39 +5,55 @@ using UnityEngine.UI;
 
 public class Player : Character
 {
+    public static Action DeathPlayer;
+    
     public GameObject[] Gun = new GameObject[3];
 
     [SerializeField]private GameObject[] slots;
     [SerializeField]private float h;
     [SerializeField]private Image hpImage;
     [SerializeField] private float hpAidKit;
-    [SerializeField] private GameObject aidText;
     
-
+    
+    
+    [SerializeField] private GameObject f1Gren;
+    private GameObject f1GrenGAme;
+    
     [NonSerialized]public float hpPl;
+    
+   // private GameObject AidText;
+    private GameObject f1Text;
+    [SerializeField] private int maxF1 = 7;
+    private GameObject aidText;
+    [SerializeField] private int AidKutF1Plus = 1;
+    [SerializeField] private int maxAidKit = 7;
+    private int aidKit = 0;
+    private int f1 = 3;
     
     private float x, y;
     private int inHandGun;
     private GameObject textAmmoUi;
-    private int aidKit = 0;
     private Animator anim;
-    
+
     private void Awake()
     {   
+        aidText = GameObject.Find("AidKitText");
+        f1Text = GameObject.Find("F1Text");
+        
         textAmmoUi = GameObject.Find("TextAmmo");
         hpPl=maxHp;
         rb=GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         inHandGun = 0;
-
+        f1Text.GetComponent<HudText>().TextGet(f1);
     }
     
+
     private void Update() 
     {
-
+        
         if (hpPl > 0)
         {
-            lifePl = true;
             x = Input.GetAxis("Horizontal") * speedLegs * Time.deltaTime;
             rb.linearVelocity = transform.TransformDirection(new Vector2(x, rb.linearVelocity.y));
 
@@ -93,6 +109,7 @@ public class Player : Character
                 Gun[inHandGun].GetComponent<Guns>().FaceGet(faceRight);
                 Gun[inHandGun].GetComponent<Guns>().enabled = false;
                 textAmmoUi.GetComponent<TextAmmoGuns>().AmmoTextNull();
+                Gun[inHandGun].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
                 slots[inHandGun].GetComponent<Slot>().DropItem();
                 Gun[inHandGun].transform.parent = null;
                 Gun[inHandGun].GetComponent<BoxCollider2D>().enabled = true;
@@ -107,10 +124,17 @@ public class Player : Character
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.B) && f1 > 0)
+        {
+            SpawnGranade();
+            f1Text.GetComponent<HudText>().TextGet(-1);
+            f1 -= 1;
+        }
+        
         if(hpPl <= 0)
         {
+            DeathPlayer?.Invoke();
             anim.SetBool("Death",true);
-            GameObject.FindGameObjectWithTag("Enemy").GetComponent<EnemyBot>().DeathPlayer();
             Destroy(Gun[inHandGun]);
         }
     }
@@ -122,7 +146,7 @@ public class Player : Character
         face.x *= -1;
         transform.localScale = face;
     }
-
+    
     private void OnTriggerStay2D(Collider2D other)
     { 
         if (other.gameObject.name=="Ladder")
@@ -134,6 +158,26 @@ public class Player : Character
                 Gun[inHandGun].GetComponent<Guns>().LadderOff(y);
             }
         }  
+        
+        if (other.name == "AidKit(Clone)")
+        {
+            if (aidKit < maxAidKit)
+            {
+                aidText.GetComponent<HudText>().TextGet(AidKutF1Plus);
+                aidKit += 1;
+                Destroy(other.gameObject);  
+            }
+        }
+        
+        if (other.name == "F1 Drop(Clone)")
+        {
+            if (f1 < maxF1)
+            {
+                f1Text.GetComponent<HudText>().TextGet(AidKutF1Plus);
+                f1 += 1;
+                Destroy(other.gameObject);  
+            }
+        }
 
     }
 
@@ -142,10 +186,9 @@ public class Player : Character
         if (other.gameObject.name == "Ladder")
         {
             y = 0;
-            Gun[inHandGun].GetComponent<Guns>().LadderOff(y);
-
-       }
-   }
+            Gun[inHandGun].GetComponent<Guns>().LadderOff(y); 
+        }
+    }
 
     public void TakeDamage(float Damage)
     {
@@ -158,6 +201,7 @@ public class Player : Character
         if(slots[inHandGun].transform.childCount > 0)
         { 
             Gun[inHandGun].SetActive(true);
+            Gun[inHandGun].GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             Gun[inHandGun].GetComponent<BoxCollider2D>().enabled = false;
             Gun[inHandGun].GetComponent<Animator>().enabled = true;
             Gun[inHandGun].GetComponent<Guns>().enabled = true;      
@@ -193,11 +237,25 @@ public class Player : Character
             hpPl = maxHp;
         }
         hpImage.GetComponent<HpImage>().TakeHP(hpPl);
-        aidText.GetComponent<AidKitText>().AidKitGet(-1);
+        aidText.GetComponent<HudText>().TextGet(-1);
     }
 
-    public void AidkitGet(int x)
+
+
+    private void SpawnGranade()
     {
-        aidKit += x;
+        if (faceRight)
+        {
+            f1GrenGAme = Instantiate(f1Gren, new Vector2(transform.position.x + .5382f, transform.position.y + 0.033f),
+                Quaternion.Euler(0, 0, 0));
+            f1GrenGAme.GetComponent<Rigidbody2D>().AddForce(new Vector2(7f,6f), ForceMode2D.Impulse);
+        }
+
+        if (faceRight == false)
+        {
+            f1GrenGAme = Instantiate(f1Gren, new Vector2(transform.position.x - .5382f, transform.position.y + 0.033f),
+                Quaternion.Euler(0, 0, 0));
+            f1GrenGAme.GetComponent<Rigidbody2D>().AddForce(new Vector2(-7f,6f), ForceMode2D.Impulse);
+        }
     }
 }

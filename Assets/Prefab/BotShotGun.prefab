@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5361667958412506388}
   - component: {fileID: 3397482408978278827}
   - component: {fileID: 2048283767213804663}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: BotShotGun
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 878773849517323943}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.846, y: -0.167, z: 0}
+  m_LocalPosition: {x: 2.846, y: -0.167, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5518446045040149462, guid: 643f101950db53d45b646c58dba0badb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -112,6 +112,7 @@ MonoBehaviour:
   speedLegs: 1
   distPatrol: 8
   angryDist: 7
+  yAngryDist: 2
   distShoting: 6
   pointPatrol: {fileID: 7653613819331642793, guid: c7509929d131aac4db53e066c344ab8d, type: 3}
   anim: {fileID: 3980324265463042435}
@@ -120,6 +121,7 @@ MonoBehaviour:
   dropItem:
   - {fileID: 7045351922783322962, guid: 4f9f694d433359c4e818d9c950024959, type: 3}
   - {fileID: 7097526152294289363, guid: 8dc97ae2f5812664c9efb69e3a7c5b63, type: 3}
+  - {fileID: 5566869349810846373, guid: 56bdb5e3218593d46a510b9e5e4a7f17, type: 3}
 --- !u!50 &3397482408978278827
 Rigidbody2D:
   serializedVersion: 5
@@ -132,7 +134,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 30
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -204,7 +206,7 @@ GameObject:
   - component: {fileID: 2243372186737716519}
   - component: {fileID: 3980324265463042435}
   - component: {fileID: 2494820313461192634}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BodyBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,9 +295,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1073608031
+  m_SortingLayer: 3
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5518446045040149462, guid: 643f101950db53d45b646c58dba0badb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -370,6 +372,10 @@ PrefabInstance:
     - target: {fileID: 6942298397487380586, guid: 6faa626fe190cad47bc107723c4468b5, type: 3}
       propertyPath: m_Name
       value: GUN ShotGun
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942298397487380586, guid: 6faa626fe190cad47bc107723c4468b5, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 7834613293756240594, guid: 6faa626fe190cad47bc107723c4468b5, type: 3}
       propertyPath: m_Enabled

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5164409865166020567}
   - component: {fileID: 4840191969318006621}
   - component: {fileID: 400793025221116067}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BodyBot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,9 +100,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1073608031
+  m_SortingLayer: 3
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5518446045040149462, guid: 643f101950db53d45b646c58dba0badb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 8544675989857954066}
   - component: {fileID: 181948628012350687}
   - component: {fileID: 8972287894989212854}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: BotMka
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 8645917919000750624}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.846, y: -0.167, z: 0}
+  m_LocalPosition: {x: 2.846, y: -0.167, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -196,9 +196,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -2011955
+  m_SortingLayer: 2
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -5518446045040149462, guid: 643f101950db53d45b646c58dba0badb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -226,6 +226,7 @@ MonoBehaviour:
   speedLegs: 1
   distPatrol: 8
   angryDist: 7
+  yAngryDist: 2
   distShoting: 6
   pointPatrol: {fileID: 7653613819331642793, guid: c7509929d131aac4db53e066c344ab8d, type: 3}
   anim: {fileID: 4840191969318006621}
@@ -234,6 +235,7 @@ MonoBehaviour:
   dropItem:
   - {fileID: 8725008769700171442, guid: 5d938f10c57898440b61334fc216e26b, type: 3}
   - {fileID: 7097526152294289363, guid: 8dc97ae2f5812664c9efb69e3a7c5b63, type: 3}
+  - {fileID: 5566869349810846373, guid: 56bdb5e3218593d46a510b9e5e4a7f17, type: 3}
 --- !u!50 &181948628012350687
 Rigidbody2D:
   serializedVersion: 5
@@ -246,7 +248,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 30
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -330,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 3228363156040825247, guid: 6886feaaa86edc34e9664f2f40ec9c6e, type: 3}
       propertyPath: m_Name
       value: GUN Mka
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228363156040825247, guid: 6886feaaa86edc34e9664f2f40ec9c6e, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 3261538956525583992, guid: 6886feaaa86edc34e9664f2f40ec9c6e, type: 3}
       propertyPath: m_LocalPosition.x

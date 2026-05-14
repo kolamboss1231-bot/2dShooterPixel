@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 30706590767804578}
   - component: {fileID: 8170307732353512244}
   - component: {fileID: -6879471504982803092}
-  m_Layer: 7
+  m_Layer: 12
   m_Name: BulletPistoletPl
   m_TagString: PlayerPiston
   m_Icon: {fileID: 0}
@@ -79,9 +79,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1073608031
+  m_SortingLayer: 3
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -7915133137270524319, guid: 60de51fb2d57d334da046c47167dca3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

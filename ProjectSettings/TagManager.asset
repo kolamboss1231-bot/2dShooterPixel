@@ -15,13 +15,13 @@ TagManager:
   - Water
   - UI
   - Solid
-  - Piston
+  - EnemyBullet
   - platforma
   - Ladder
-  - 
-  - 
-  - 
-  - 
+  - PlayerLayer
+  - EnemyLayer
+  - Bullet
+  - DropAmmo
   - 
   - 
   - 
@@ -43,6 +43,18 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SuperBack
+    uniqueID: 2385248319
+    locked: 0
+  - name: Back
+    uniqueID: 4292955341
+    locked: 0
+  - name: Game
+    uniqueID: 1073608031
+    locked: 0
+  - name: foreground
+    uniqueID: 1277989057
     locked: 0
   m_RenderingLayers:
   - Default

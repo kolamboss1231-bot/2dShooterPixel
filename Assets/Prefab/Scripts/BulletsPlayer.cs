@@ -23,7 +23,7 @@ public class BulletsPlayer  : Bullets
 
     protected override void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Solid"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("EnemyLayer"))
         {
             if (other.gameObject.tag == "Enemy")
             {

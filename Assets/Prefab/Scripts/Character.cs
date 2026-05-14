@@ -5,8 +5,7 @@ using UnityEngine;
     [SerializeField]protected float maxHp;
     [SerializeField]protected int speedLegs;
     
-    protected bool lifePl=true;
-    protected bool animMoves = false;
+    //protected bool animMoves = false;
     
     protected Rigidbody2D rb;
 

@@ -1,9 +1,7 @@
 using System;
 using UnityEngine;
 using Unity.Mathematics;
-using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
+
 
 
 public class Guns : MonoBehaviour
@@ -53,7 +51,7 @@ public class Guns : MonoBehaviour
 
     protected void Update()
     {
-        if (gameObject.transform.parent.name == "Player(Clone)" && gameObject == true && parent != gameObject.transform.parent)
+        if (gameObject.transform.parent.CompareTag("Player") && gameObject == true && parent != gameObject.transform.parent)
         {
             parent = gameObject.transform.parent;
             
@@ -61,7 +59,7 @@ public class Guns : MonoBehaviour
             {
                 gameObject.transform.localScale = face;
             }
-
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             faceRight = parent.GetComponent<Character>().faceRight;
         }
 
@@ -70,7 +68,7 @@ public class Guns : MonoBehaviour
             parent = gameObject.transform.parent;
         }
         
-        if (parent == gameObject.transform.parent && parent.name == "Player(Clone)")
+        if (parent == gameObject.transform.parent && parent.name == "Player")
         {
             textAmmoUi.GetComponent<TextAmmoGuns>().AmmoText(ammoInMagazineGame, maxAmmoGame);
 
@@ -152,14 +150,14 @@ public class Guns : MonoBehaviour
     {
         if (faceRight)
         {
-            bulletOb = Instantiate(bullet, new Vector2(transform.position.x + .8382f, transform.position.y + 0.033f),
+            bulletOb = Instantiate(bullet, new Vector2(transform.position.x + .3382f, transform.position.y + 0.033f),
                 quaternion.Euler(0, 0, RandomRazbros()));
             bulletOb.GetComponent<Bullets>().GunPosition(parent);
         }
 
         if (faceRight == false)
         {
-            bulletOb = Instantiate(bullet, new Vector2(transform.position.x - .882f, transform.position.y + 0.033f),
+            bulletOb = Instantiate(bullet, new Vector2(transform.position.x - .382f, transform.position.y + 0.033f),
                 quaternion.Euler(0, 0, RandomRazbros()));
             bulletOb.GetComponent<Bullets>().GunPosition(parent);
         }

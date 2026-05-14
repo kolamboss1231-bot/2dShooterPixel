@@ -12,7 +12,7 @@ public class PickUp : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D other)
     {
-        if( other.gameObject.name=="Player(Clone)")
+        if( other.gameObject.CompareTag("Player"))
         {
             for( int i = 0; i < Inventory.slots.Length; i++)
             {

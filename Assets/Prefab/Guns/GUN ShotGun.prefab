@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 6942298397487380586}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.6678743, y: -0.7545676, z: -1}
+  m_LocalPosition: {x: -6.6678743, y: -0.7545676, z: 2}
   m_LocalScale: {x: 0.5, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -82,9 +82,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 1073608031
+  m_SortingLayer: 3
+  m_SortingOrder: -1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -9027452773353589030, guid: 2b24f54d55d4b2e488025cbb152d3f16, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -150,8 +150,8 @@ MonoBehaviour:
   upRazbros: 8.136
   animGun: {fileID: 6216743981391021977}
   timeReload: 4
-  ammoInMagazine: 6
   audioReload: {fileID: 1118785151227328629, guid: 679a9de283b0e3544a6a05cfa0c71cd1, type: 3}
+  ammoInMagazine: 6
   riteOfFire: 0.6
 --- !u!50 &8571117315888832838
 Rigidbody2D:
@@ -165,7 +165,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.5
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1

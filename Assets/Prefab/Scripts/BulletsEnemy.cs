@@ -22,28 +22,15 @@ public class BulletsEnemy : Bullets
     }
     protected override void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Solid"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerLayer"))
         {
-            if (other.gameObject.tag == "Player")
+            if (other.gameObject.CompareTag("Player"))
             {
                 other.gameObject.GetComponent<Player>().TakeDamage(Damage);
                 Destroy(gameObject);
             }
             
-            if (other.gameObject.tag == "Enemy")
-            {
-                if (faceRight)
-                {
-                    gameObject.transform.position = new Vector2(gameObject.transform.position.x + 0.5f, gameObject.transform.position.y);
-                }
-
-                if (faceRight == false)
-                {
-                    gameObject.transform.position = new Vector2(gameObject.transform.position.x - 0.5f, gameObject.transform.position.y);
-                }
-            }
-
-            if (other.gameObject.tag != "Player" && other.gameObject.tag != "Enemy")
+            if (other.gameObject.tag != "Player")
             {
                 Destroy(gameObject);
             }
