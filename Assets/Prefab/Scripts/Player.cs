@@ -149,6 +149,16 @@ public class Player : Character
     
     private void OnTriggerStay2D(Collider2D other)
     { 
+        if (other.name == "DialoguePerson")
+        {
+            Debug.Log("AAAAAA");
+            if (Input.GetKey(KeyCode.E))
+            {
+                Debug.Log("STARTDIalPlayer");
+                other.GetComponent<DialogueAnimator>().StartDialogueOnOPlayer();
+            }
+        }
+        
         if (other.gameObject.name=="Ladder")
         {
             y = Input.GetAxis("Vertical")*h*Time.deltaTime;
@@ -178,6 +188,9 @@ public class Player : Character
                 Destroy(other.gameObject);  
             }
         }
+
+        
+        
 
     }
 
@@ -257,5 +270,6 @@ public class Player : Character
                 Quaternion.Euler(0, 0, 0));
             f1GrenGAme.GetComponent<Rigidbody2D>().AddForce(new Vector2(-7f,6f), ForceMode2D.Impulse);
         }
+        
     }
 }

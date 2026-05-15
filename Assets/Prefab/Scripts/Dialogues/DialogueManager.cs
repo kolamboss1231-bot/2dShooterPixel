@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    [SerializeField] private float speedOutputText;
+
     private void Start()
     {
         sentences = new Queue<string>();
@@ -24,7 +26,7 @@ public class DialogueManager : MonoBehaviour
         animBox.SetBool("Open", true);
         animStart.SetBool("Open", false);
         
-        nameText.text = dial.name;
+        nameText.text = dial.Name;
         sentences.Clear();
 
         foreach (string sentence in dial.sentences)
@@ -36,8 +38,9 @@ public class DialogueManager : MonoBehaviour
 
     public void NextSentence()
     {
-        if (sentences.Count == 0)
+        if (sentences.Count == 1)
         {
+            Debug.Log("No sentences found");
             EndDial();
             return;
         }
@@ -59,5 +62,13 @@ public class DialogueManager : MonoBehaviour
     public void EndDial()
     {
         animBox.SetBool("Open", false);
+    }
+
+    private void Update()
+    {
+        if (sentences.Count != 0 & Input.GetKeyDown(KeyCode.E))
+        {
+            NextSentence();
+        }
     }
 }

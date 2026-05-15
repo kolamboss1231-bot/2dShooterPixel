@@ -44,14 +44,9 @@ public class EnemyBot : Character
         audioReload = Gun.GetComponent<Guns>().audioReload;
         AmmoinMagazine = Gun.GetComponent<Guns>().ammoInMagazine;
         AmmoInMagazineGame = AmmoinMagazine;
-        // shotAudio = Gun.GetComponent<Guns>().shotAudio;
+
          riteOfFire= Gun.GetComponent<Guns>().riteOfFire;
-        
-        // maxAmmo= Gun.GetComponent<Guns>().maxAmmo;
-        // downRazbros= Gun.GetComponent<Guns>().downRazbros;
-        // upRazbros= Gun.GetComponent<Guns>().upRazbros;
-        //Gun.GetComponent<Guns>().enabled = true;
-        
+
         _delayRiteOfFire = riteOfFire;
         rb=GetComponent<Rigidbody2D>();
 
