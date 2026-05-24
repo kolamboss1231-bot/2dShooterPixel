@@ -40,7 +40,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (sentences.Count == 1)
         {
-            Debug.Log("No sentences found");
             EndDial();
             return;
         }

@@ -29,6 +29,12 @@ public class Player : Character
     [SerializeField] private int maxAidKit = 7;
     private int aidKit = 0;
     private int f1 = 3;
+
+    private GameObject door;
+    private bool doorTrigger;
+    private GameObject dial;
+    private bool dialTrigger;
+    
     
     private float x, y;
     private int inHandGun;
@@ -131,6 +137,16 @@ public class Player : Character
             f1 -= 1;
         }
         
+        if (Input.GetKeyDown(KeyCode.E) && dialTrigger )
+        {
+            dial.GetComponent<DialogueAnimator>().StartDialogueOnOPlayer();
+        }
+        
+        if (Input.GetKeyDown(KeyCode.E) && doorTrigger )
+        {
+            door.GetComponent<DoorScript>().DoorManager();   
+        }
+        
         if(hpPl <= 0)
         {
             DeathPlayer?.Invoke();
@@ -147,59 +163,83 @@ public class Player : Character
         transform.localScale = face;
     }
     
+
     private void OnTriggerStay2D(Collider2D other)
-    { 
-        if (other.name == "DialoguePerson")
-        {
-            Debug.Log("AAAAAA");
-            if (Input.GetKey(KeyCode.E))
-            {
-                Debug.Log("STARTDIalPlayer");
-                other.GetComponent<DialogueAnimator>().StartDialogueOnOPlayer();
-            }
-        }
+    {
         
-        if (other.gameObject.name=="Ladder")
+        if (other.gameObject.name == "Ladder")
         {
-            y = Input.GetAxis("Vertical")*h*Time.deltaTime;
-            rb.linearVelocity=transform.TransformDirection(new Vector2(rb.linearVelocity.x,y));
-            if(Gun[inHandGun])
+            y = Input.GetAxis("Vertical") * h * Time.deltaTime;
+            rb.linearVelocity = transform.TransformDirection(new Vector2(rb.linearVelocity.x, y));
+            if (Gun[inHandGun])
             {
                 Gun[inHandGun].GetComponent<Guns>().LadderOff(y);
             }
-        }  
-        
+        }
+
         if (other.name == "AidKit(Clone)")
         {
             if (aidKit < maxAidKit)
             {
                 aidText.GetComponent<HudText>().TextGet(AidKutF1Plus);
                 aidKit += 1;
-                Destroy(other.gameObject);  
+                Destroy(other.gameObject);
             }
         }
-        
+
         if (other.name == "F1 Drop(Clone)")
         {
             if (f1 < maxF1)
             {
                 f1Text.GetComponent<HudText>().TextGet(AidKutF1Plus);
                 f1 += 1;
-                Destroy(other.gameObject);  
+                Destroy(other.gameObject);
             }
         }
 
-        
-        
-
+        // if (other.gameObject.CompareTag("Door") )
+        // {
+        //     Debug.Log("Door");
+        //     if (Input.GetKeyDown(KeyCode.E))
+        //     {
+        //         other.gameObject.GetComponent<DoorScript>().DoorManager();   
+        //     }
+        // }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.name == "DialoguePerson")
+        {
+            dial = other.gameObject;
+            dialTrigger = true;
+        }
+
+        if (other.gameObject.CompareTag("Door"))
+        {
+            door = other.gameObject;
+            doorTrigger = true;
+        }
+    }
+    
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.name == "Ladder")
         {
             y = 0;
             Gun[inHandGun].GetComponent<Guns>().LadderOff(y); 
+        }
+
+        if (other.name == "DialoguePerson")
+        {
+            dialTrigger = false;
+            dial = null;
+        }
+        
+        if (other.gameObject.CompareTag("Door"))
+        {
+            door = null;
+            doorTrigger = false;
         }
     }
 

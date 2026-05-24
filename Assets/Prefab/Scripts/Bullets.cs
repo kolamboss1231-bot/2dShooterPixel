@@ -9,22 +9,33 @@ public class Bullets : MonoBehaviour
     [SerializeField]protected GameObject Gun;
     [SerializeField]protected float speedPiston;
     [SerializeField]protected float distPistDest;
-    [SerializeField]protected LayerMask whatIsSolid;
+    // [SerializeField]protected LayerMask whatIsSolid;
     [SerializeField]protected float Damage;
 
     protected bool faceRight;
     protected Transform spawnPos;
     
     
-    //faceRight = Gun.GetComponent<Guns>().faceRight;
-    //Gun.GetComponent<Transform>();
     protected virtual void Awake()
     {
         
     }
     
-    void Update()
-    {
+    void  Update()
+    {if(faceRight)
+        {
+            gameObject.transform.Translate(Vector2.right*speedPiston*Time.deltaTime);
+        }
+           
+        if (faceRight==false)
+        {
+            gameObject.transform.Translate(Vector2.left*speedPiston*Time.deltaTime);
+        } 
+        
+        if (Vector2.Distance(gameObject.transform.position, spawnPos.transform.position) > distPistDest)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public virtual void GunPosition(Transform parent)

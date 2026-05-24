@@ -3,23 +3,23 @@ using UnityEngine;
 public class BulletsPlayer  : Bullets
 {
 
-     void Update()
-    {
-        if(faceRight)
-        {
-            gameObject.transform.Translate(Vector2.right*speedPiston*Time.deltaTime);
-        }
-           
-        if (faceRight==false)
-        {
-            gameObject.transform.Translate(Vector2.left*speedPiston*Time.deltaTime);
-        } 
-        
-        if (Vector2.Distance(gameObject.transform.position, spawnPos.transform.position) > distPistDest)
-        {
-            Destroy(gameObject);
-        }
-    }
+    //  void Update()
+    // {
+    //     // if(faceRight)
+    //     // {
+    //     //     gameObject.transform.Translate(Vector2.right*speedPiston*Time.deltaTime);
+    //     // }
+    //     //    
+    //     // if (faceRight==false)
+    //     // {
+    //     //     gameObject.transform.Translate(Vector2.left*speedPiston*Time.deltaTime);
+    //     // } 
+    //     //
+    //     // if (Vector2.Distance(gameObject.transform.position, spawnPos.transform.position) > distPistDest)
+    //     // {
+    //     //     Destroy(gameObject);
+    //     // }
+    // }
 
     protected override void OnCollisionEnter2D(Collision2D other)
     {
@@ -29,9 +29,14 @@ public class BulletsPlayer  : Bullets
             {
                 other.gameObject.GetComponent<EnemyBot>().TakeDamage(Damage);
             }
-
             Destroy(gameObject);
         }
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Solid"))
+        {
+            Destroy(gameObject);
+        }
+
     }
 }
         
